@@ -15,3 +15,24 @@ authentication.set_access_token(access_token, access_token_secret)
 
 # call the api
 api = tweepy.API(authentication)
+
+# Streaming tweets from home timeline
+
+public_tweet = api.home_timeline(count=5)
+
+for tweet in public_tweet:
+    print("-->",tweet.text)
+
+# Streaming tweets from user timeline
+
+user = "ziabolas"
+public_tweet = api.user_timeline(id=user,count=5)
+
+for tweet in public_tweet:
+    print("-->",tweet.text)
+
+# Retrieve tweets
+result = api.search(['covid','Covid-19','COVID-19'], lang='en', count=10)
+
+# JSON keys
+print(result[0]._json.keys())
